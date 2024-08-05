@@ -33,28 +33,29 @@ type Message struct {
 }
 
 type DetailedMessage struct {
-	ID             string      `json:"id"`
-	AccountID      string      `json:"accountId"`
-	MessageID      string      `json:"msgid"`
-	From           Addressee   `json:"from"`
-	To             []Addressee `json:"to"`
-	CC             []Addressee `json:"cc"`
-	BCC            []Addressee `json:"bcc"`
-	Subject        string      `json:"subject"`
-	Seen           bool        `json:"seen"`
-	Flagged        bool        `json:"flagged"`
-	IsDeleted      bool        `json:"isDeleted"`
-	Verifications  []string    `json:"verifications"`
-	Retention      bool        `json:"retention"`
-	RetentionDate  time.Time   `json:"retentionDate"`
-	Text           string      `json:"text"`
-	Html           []string    `json:"html"`
-	HasAttachments bool        `json:"hasAttachments"`
-	Attachments    []string    `json:"attachments"`
-	Size           int         `json:"size"`
-	DownloadUrl    string      `json:"downloadUrl"`
-	CreatedAt      time.Time   `json:"createdAt"`
-	UpdatedAt      time.Time   `json:"updatedAt"`
+	ID        string      `json:"id"`
+	AccountID string      `json:"accountId"`
+	MessageID string      `json:"msgid"`
+	From      Addressee   `json:"from"`
+	To        []Addressee `json:"to"`
+	CC        []Addressee `json:"cc"`
+	BCC       []Addressee `json:"bcc"`
+	Subject   string      `json:"subject"`
+	Seen      bool        `json:"seen"`
+	Flagged   bool        `json:"flagged"`
+	IsDeleted bool        `json:"isDeleted"`
+	// response from api doesn't match the struct
+	//Verifications  []string    `json:"verifications"`
+	Retention      bool      `json:"retention"`
+	RetentionDate  time.Time `json:"retentionDate"`
+	Text           string    `json:"text"`
+	Html           []string  `json:"html"`
+	HasAttachments bool      `json:"hasAttachments"`
+	Attachments    []string  `json:"attachments"`
+	Size           int       `json:"size"`
+	DownloadUrl    string    `json:"downloadUrl"`
+	CreatedAt      time.Time `json:"createdAt"`
+	UpdatedAt      time.Time `json:"updatedAt"`
 }
 
 func (c *MailClient) GetMessages(account *Account, page int) ([]Message, error) {
