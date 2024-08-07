@@ -16,8 +16,14 @@ type Domain struct {
 	UpdatedAt time.Time `json:"updatedAt"`
 }
 
+var cacheDomains []Domain
+
 func (c *MailClient) GetDomains() ([]Domain, error) {
 	var response []Domain
+
+	if len(cacheDomains) > 0 {
+		return cacheDomains, nil
+	}
 
 	req, err := http.NewRequest("GET", string(c.service)+"/domains", nil)
 	if err != nil {
@@ -44,6 +50,8 @@ func (c *MailClient) GetDomains() ([]Domain, error) {
 	if err != nil {
 		return nil, err
 	}
+
+	cacheDomains = response
 
 	return response, nil
 }
